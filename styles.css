@@ -1,0 +1,196 @@
+/*
+  1 - Variable Declaration.
+  2 - Main Section Styles.
+  3 - Form Styles.
+    3.1 - Search Input Field.
+    3.2 - Team Members.
+    3.3 - Button Styles.
+*/
+
+/* 1 - Variable Declaration */
+:root {
+  --gray-500: rgba(38, 38, 38, 0.5);
+  --gray-750: rgba(38, 38, 38, 0.75);
+  --shadow-color: rgba(195, 195, 195, 0.5);
+  --line-color: rgb(200, 200, 200);
+  --gradient-color-left: rgb(108, 183, 255);
+  --gradient-color-right: rgb(121, 133, 255);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* 2 - Main Section Styles */
+section {
+  /* Dimensions */
+  width: 50%;
+  /* Spacing */
+  padding: 1rem;
+  margin: 2em auto;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+}
+
+section p {
+  /* Typography */
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+/* 3 - Form Styles */
+form {
+  width: 70%;
+  margin: 1rem auto;
+}
+
+/* 3.1 - Search Input Field */
+.input-box {
+  position: relative;
+}
+
+.input-box label {
+  /* Position */
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  /* Color */
+  color: var(--gray-500);
+  /* Transition */
+  transition: bottom 0.2s;
+}
+
+.input-box label .fas {
+  margin-right: 10px;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  /* Move Label To The Top Of The Input Field */
+  bottom: 100%;
+  font-size: 0.675rem;
+  color: var(--gray-750);
+}
+
+.input-box input:focus ~ label i,
+.input-box input:valid ~ label i {
+  /* Hide The Search Icon */
+  display: none;
+}
+
+.input-box input {
+  /* Dimensions */
+  width: 100%;
+  /* Reset */
+  outline: none;
+  border: none;
+  /* Spacing */
+  padding: 5px 10px;
+  /* Border */
+  border-bottom: 1px solid var(--line-color);
+  /* Typography */
+  font-size: 1.25rem;
+}
+
+form input:focus {
+  border-color: black;
+}
+
+/* 3.2 - Team Members. */
+ul {
+  list-style-type: none;
+  margin: 2rem auto 1rem;
+}
+
+ul li {
+  /* Spacing */
+  padding: 10px 15px;
+  margin: 5px auto;
+  /* Flex */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: baseline;
+  /* Border */
+  border: 1px solid var(--line-color);
+}
+
+ul li span i {
+  font-size: 0.875rem;
+  margin-right: 0.5rem;
+}
+
+ul li label {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+/* Green Tick Styles */
+ul li label::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--line-color);
+}
+
+ul li input[type="checkbox"]:checked ~ label::after {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.25rem;
+  content: "\f058";
+  color: #95cc5e;
+  border: none;
+}
+
+ul li input[type="checkbox"]:checked ~ span {
+  color: var(--gray-500);
+}
+
+/* 3.3 - Button Styles. */
+.btn-box {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  /* Spacing */
+  padding: 10px 20px;
+  /* Border */
+  border-radius: 5px;
+  border: 1px solid var(--line-color);
+  /* Color */
+  background-color: white;
+  /* Dimension */
+  width: 125px;
+  cursor: pointer;
+}
+
+.cancel {
+  /* Make Button In Active */
+  cursor: auto;
+  pointer-events: none;
+  color: var(--gray-500);
+}
+
+.save {
+  /* Typography */
+  text-transform: uppercase;
+  /* Color */
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    var(--gradient-color-left),
+    var(--gradient-color-right)
+  );
+  /* Elevation */
+  box-shadow: 0 5px 15px 5px var(--shadow-color);
+}
