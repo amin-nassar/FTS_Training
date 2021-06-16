@@ -1,0 +1,156 @@
+/*
+  1 - Variables Declaration.
+  2 - Main Section.
+  3 - Left Side.
+    3.1 - Sidebar.
+    3.2 - Figure.
+  4 - Right Side.
+*/
+
+/* 1 - Variables Declaration */
+:root {
+  --primary-color: #4c5057;
+  --text-color: #707379;
+  --lines-color: #bbbbbb;
+
+  --title-font-family: "Times New Roman";
+  --text-font-family: sans-serif;
+
+  --title-font-size: 3.5rem;
+  --text-font-size: 0.75rem;
+  --small-text-font-size: 0.7rem;
+  --button-font-size: 0.6rem;
+
+  --aside-main-margin: 3rem;
+  --aside-secondary-margin: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--text-font-family);
+  margin: 0;
+  padding: 0;
+}
+
+/* 2 - Main Section.*/
+section {
+  height: 100vh;
+  padding: 0 10vw;
+  position: relative;
+}
+
+/* 3 - Left Side. */
+.left {
+  /* Dimensions */
+  width: 60vw;
+  height: 80vh;
+  /* Spacing */
+  padding: 20px 0;
+  /* Colors */
+  color: var(--primary-color);
+  box-shadow: 0 0 15px 5px #d1d1d1;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+}
+
+/* 3.1 - Sidebar. */
+
+.left aside {
+  /* Dimensions */
+  flex-basis: 40%;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.left h1 {
+  /* Typography */
+  font-family: var(--title-font-family);
+  font-size: var(--title-font-size);
+  /* Positioning */
+  position: relative;
+  /* Spacing */
+  margin-top: var(--aside-main-margin);
+}
+
+.left h1::before {
+  content: "";
+  /* Position */
+  position: absolute;
+  top: -5px;
+  left: 0;
+  /* Dimensions */
+  width: 20%;
+  height: 2px;
+  /* Color */
+  background-color: var(--lines-color);
+}
+
+.left p {
+  /* Typography */
+  font-size: var(--text-font-size);
+  font-weight: 600;
+  line-height: 1.5;
+  /* Dimenstion */
+  width: 80%;
+  /* Spacing */
+  margin-top: var(--aside-main-margin);
+  /* Color */
+  color: var(--text-color);
+}
+
+.left button {
+  /* Typography */
+  font-size: var(--button-font-size);
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  /* Spacing */
+  padding: 15px 30px;
+  margin-bottom: 3rem;
+  /* Color */
+  background-color: white;
+  color: var(--primary-color);
+  /* Border */
+  border: 1px solid var(--lines-color);
+  border-radius: 50px;
+
+  cursor: pointer;
+  /* Transition */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.left button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* 3.2 - Figure. */
+.left figure {
+  /* Dimensions */
+  flex-basis: 40%;
+}
+
+figure img {
+  /* Dimensions */
+  width: 100%;
+  aspect-ratio: 1.5;
+  opacity: 0.25;
+}
+
+/* 4 - Right Side. */
+.right {
+  /* Positioning */
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  /* Dimensions */
+  width: 50%;
+  aspect-ratio: 1.5;
+  /* Background */
+  background-image: url(./images/photo-2.PNG);
+  background-size: cover;
+}

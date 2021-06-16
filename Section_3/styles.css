@@ -1,0 +1,115 @@
+/*
+  1 - Main Section.
+  2 - Form Styles.
+  3 - Footer.
+*/
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* 1 - Main Section. */
+section {
+  height: 75vh;
+  background: #3b3e3f url(./images/mountain.jpg) center;
+  background-blend-mode: overlay;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.title {
+  color: #d4d5d5;
+  text-align: center;
+}
+
+.title h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3.5rem;
+}
+
+.title span {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+/* 2 - Form Styles. */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-basis: 35%;
+}
+
+form div {
+  position: relative;
+}
+
+form input {
+  padding-bottom: 2.5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #7d7f81;
+  color: white;
+  width: 250px;
+}
+
+form label {
+  font-size: 0.75rem;
+  position: absolute;
+  color: #7d7f81;
+  text-transform: uppercase;
+  bottom: 2.5px;
+  left: 0px;
+  transition: bottom 0.4s;
+}
+
+form input:focus {
+  padding-top: 5px;
+  border-color: white;
+  border-width: 2px;
+}
+
+form input:focus ~ label,
+form input:valid ~ label {
+  color: white;
+  font-size: 0.6rem;
+  bottom: 100%;
+}
+
+form button {
+  background-color: #3b3e3f;
+  padding: 15px 50px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #d4d5d5;
+  align-self: center;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s;
+}
+
+form button:hover {
+  background-color: #2e2e2e;
+}
+
+/* 3 - Footer. */
+footer {
+  color: #d4d5d5;
+  align-self: stretch;
+  font-size: 0.75rem;
+  padding: 0 2rem;
+  opacity: 0.75;
+  display: flex;
+  justify-content: space-between;
+}

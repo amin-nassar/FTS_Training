@@ -1,0 +1,45 @@
+@media (max-width: 992px) {
+  figure figcaption {
+    font-size: 0.625rem;
+  }
+  figure span {
+    font-size: 0.8rem;
+  }
+
+  .container {
+    height: 37.5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .one {
+    width: 100%;
+    margin-bottom: var(--grid-margin);
+    height: auto;
+  }
+
+  .two,
+  .three,
+  .four,
+  .five {
+    height: auto;
+    width: calc((100% - var(--grid-margin)) / 2);
+  }
+
+  figure figcaption {
+    font-size: 1rem;
+  }
+  figure span {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .two,
+  .three,
+  .four,
+  .five {
+    width: 100%;
+    margin-bottom: var(--grid-margin);
+  }
+}
