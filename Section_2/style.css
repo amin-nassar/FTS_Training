@@ -1,0 +1,122 @@
+/*
+  1 - Variable Declaration.
+  2 - Main Section.
+    2.1 - Title.
+    2.2 - Images Container.
+  3 - Single Figure Caption.
+  4 - Figure Spacing.
+*/
+
+/* 1 - Variable Declaration. */
+:root {
+  --grid-margin: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* 2 - Main Section. */
+section {
+  height: 100vh;
+  padding: 5vh 10vw;
+}
+
+/* 2.1 - Title. */
+section h1 {
+  font-size: 2rem;
+  font-family: "Times New Roman", Times, serif;
+  color: #4c5057;
+  text-align: center;
+  position: relative;
+}
+
+h1::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 1px;
+  top: -5px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #d5d5d7;
+}
+
+/* 2.2 - Images Container. */
+.container {
+  width: 90%;
+  height: 35vw;
+  margin: 2rem auto;
+}
+
+.container figure {
+  float: left;
+  position: relative;
+}
+
+/* 3 - Single Figure Caption. */
+figure figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+figcaption span {
+  display: block;
+  color: white;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+figure::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* 4 - Figure Spacing. */
+.one {
+  width: calc(50% - var(--grid-margin));
+  height: 100%;
+}
+
+.two,
+.three,
+.four,
+.five {
+  width: calc((100% - (2 * var(--grid-margin))) / 4);
+  height: calc((100% - var(--grid-margin)) / 2);
+}
+
+.two,
+.three {
+  margin-bottom: var(--grid-margin);
+}
+.one,
+.two,
+.four {
+  margin-right: var(--grid-margin);
+}
+
+.clear {
+  clear: both;
+}
