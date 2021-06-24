@@ -1,5 +1,6 @@
 const addTodoForm = document.querySelector("form");
 const todosList = document.querySelector("#todos");
+const searchInput = document.querySelector("#search");
 
 let todos = [
   {
@@ -85,9 +86,23 @@ function addTodo(e) {
 
   todos.push({ id, task, assignee, isCompleted: false });
   todosList.appendChild(todo);
-  saveTodos();
+}
+
+function checkForTermExist(todo, term) {
+  const taskText = todo.firstElementChild.textContent;
+  return taskText.indexOf(term) > -1;
+}
+
+function searchForTodo() {
+  const term = searchInput.value;
+  const todosArray = Array.from(todosList.children);
+  todosArray.forEach(
+    (todo) =>
+      (todo.style.display = checkForTermExist(todo, term) ? "grid" : "none")
+  );
 }
 
 // Add Event Listeners
-addTodoForm.addEventListener("submit", addTodo);
 window.addEventListener("DOMContentLoaded", prepareTodoList);
+addTodoForm.addEventListener("submit", addTodo);
+searchInput.addEventListener("keyup", searchForTodo);
