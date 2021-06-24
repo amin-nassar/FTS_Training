@@ -1,6 +1,8 @@
 const addTodoForm = document.querySelector("form");
 const todosList = document.querySelector("#todos");
 const searchInput = document.querySelector("#search");
+const backdrop = document.querySelector("#backdrop");
+const modal = document.querySelector("#modal");
 
 let todos = [
   {
@@ -110,6 +112,46 @@ function toggleTodo(id) {
   checkedTodo.classList.toggle("completed");
 }
 
+function hideConfirmationModal() {
+  backdrop.style.display = "none";
+}
+
+function showConfirmationModal() {
+  backdrop.style.display = "flex";
+  backdrop.addEventListener("click", hideConfirmationModal);
+}
+
+function confirmDeletion() {
+  showConfirmationModal();
+  let promise = new Promise(function (resolve, _) {
+    modal.addEventListener("click", (e) => handleModalClick(e, resolve));
+  });
+  return promise;
+}
+
+function handleModalClick(event, resolveFunction) {
+  const clickedElement = event.target;
+  if (clickedElement.tagName == "BUTTON") {
+    resolveFunction(clickedElement.textContent == "Delete");
+  } else {
+    event.stopPropagation();
+  }
+}
+
+function deleteById(todosArray, id) {
+  const indexOfTodo = todosArray.findIndex((todo) => todo.id == id);
+  todosArray.splice(indexOfTodo, 1);
+}
+
+async function deleteTodo(id) {
+  const isDeletionConfirmed = await confirmDeletion();
+  if (isDeletionConfirmed) {
+    const deletedTodo = document.getElementById(id);
+    todosList.removeChild(deletedTodo);
+    deleteById(todos, id);
+  }
+}
+
 todosList.addEventListener("click", function (e) {
   const elementClicked = e.target;
   if (elementClicked.tagName != "P") {
@@ -117,6 +159,9 @@ todosList.addEventListener("click", function (e) {
     switch (elementClicked.dataset.role) {
       case "complete":
         toggleTodo(targetTodo);
+        break;
+      case "delete":
+        deleteTodo(targetTodo);
         break;
     }
   }
