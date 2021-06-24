@@ -3,6 +3,8 @@ const todosList = document.querySelector("#todos");
 const searchInput = document.querySelector("#search");
 const backdrop = document.querySelector("#backdrop");
 const modal = document.querySelector("#modal");
+const numberOfTodos = document.querySelector("#todo-number");
+const numberOfDone = document.querySelector("#done-number");
 
 let todos = [
   {
@@ -36,6 +38,7 @@ function prepareTodoList() {
     createNewTodo(todo.id, todo.task, todo.assignee, todo.isCompleted)
   );
   todoElements.forEach((todo) => todosList.appendChild(todo));
+  saveNumbers();
 }
 
 function createNewTodo(id, task, assignee, isCompleted) {
@@ -88,6 +91,7 @@ function addTodo(e) {
 
   todos.push({ id, task, assignee, isCompleted: false });
   todosList.appendChild(todo);
+  saveNumbers();
 }
 
 function checkForTermExist(todo, term) {
@@ -110,6 +114,7 @@ function toggleTodo(id) {
   });
   const checkedTodo = document.getElementById(id);
   checkedTodo.classList.toggle("completed");
+  saveNumbers();
 }
 
 function hideConfirmationModal() {
@@ -149,6 +154,7 @@ async function deleteTodo(id) {
     const deletedTodo = document.getElementById(id);
     todosList.removeChild(deletedTodo);
     deleteById(todos, id);
+    saveNumbers();
   }
 }
 
@@ -177,6 +183,19 @@ function inlineEdit(event) {
   const todoId = todoElement.getAttribute("id");
   const newTodoTaskName = event.target.textContent;
   updateById(todos, todoId, newTodoTaskName);
+}
+
+function calcDone() {
+  return todos.reduce(
+    (number, todo) => (todo.isCompleted ? number + 1 : number),
+    0
+  );
+}
+
+function saveNumbers() {
+  const numberOfDoneItems = calcDone();
+  numberOfDone.textContent = numberOfDoneItems;
+  numberOfTodos.textContent = todos.length - numberOfDoneItems;
 }
 
 // Add Event Listeners
