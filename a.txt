@@ -1,3 +1,0 @@
-This is File "A".
-Change From Branch "updateRight".
-Change From Branch "updateLeft".
