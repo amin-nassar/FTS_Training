@@ -11,6 +11,7 @@
 
   --font-family: sans-serif;
   --main-border-radius: 5px;
+  --large-border-radius: 10px;
 
   --gray-100: hsl(0, 0%, 90%);
   --gray-200: hsl(0, 0%, 80%);
@@ -18,6 +19,9 @@
   --gray-350: hsl(0, 0%, 50%);
   --gray-400: hsl(0, 0%, 40%);
   --gray-500: hsl(0, 0%, 20%);
+
+  --blue-light: hsl(207, 90%, 60%);
+  --blue-dark: hsl(207, 90%, 40%);
 }
 
 * {
@@ -141,4 +145,56 @@ ul li i:hover {
 .numbers {
   display: flex;
   justify-content: space-around;
+}
+
+#backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  /* Meant To Be Flex By JS */
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal {
+  padding: 20px;
+  width: 450px;
+  background-color: white;
+  border-radius: var(--large-border-radius);
+  text-align: right;
+}
+
+#modal p {
+  text-align: left;
+}
+
+.btn {
+  margin: var(--large-margin) auto auto;
+  padding: 10px 20px;
+  border-radius: var(--main-border-radius);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.cancel {
+  text-transform: uppercase;
+}
+
+.cancel:hover {
+  background-color: var(--gray-100);
+}
+
+.delete {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+.delete:hover {
+  background-color: var(--blue-dark);
 }

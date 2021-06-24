@@ -20,7 +20,7 @@
     </form>
     <hr>
     <div class="search-box">
-      <input type="search" id="search">
+      <input type="search" id="search" required>
       <label for="search"><i class="fas fa-search"></i> Search</label>
     </div>
     <ul id="todos"></ul>
@@ -29,6 +29,13 @@
       <p>Done : <span id="done-number">0</span></p>
     </div>
   </section>
+  <div id="backdrop">
+    <div id="modal">
+      <p>Are You Sure You Want To Delete This Task ?</p>
+      <button class="btn cancel">Cancel</button>
+      <button class="btn delete">Delete</button>
+    </div>
+  </div>
   <script src="./app.js"></script>
 </body>
 </html>
