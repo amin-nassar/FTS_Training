@@ -102,6 +102,26 @@ function searchForTodo() {
   );
 }
 
+function toggleTodo(id) {
+  todos.forEach((todo) => {
+    if (todo.id == id) todo.isCompleted = !todo.isCompleted;
+  });
+  const checkedTodo = document.getElementById(id);
+  checkedTodo.classList.toggle("completed");
+}
+
+todosList.addEventListener("click", function (e) {
+  const elementClicked = e.target;
+  if (elementClicked.tagName != "P") {
+    const targetTodo = elementClicked.dataset.target;
+    switch (elementClicked.dataset.role) {
+      case "complete":
+        toggleTodo(targetTodo);
+        break;
+    }
+  }
+});
+
 // Add Event Listeners
 window.addEventListener("DOMContentLoaded", prepareTodoList);
 addTodoForm.addEventListener("submit", addTodo);
