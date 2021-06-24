@@ -167,7 +167,20 @@ todosList.addEventListener("click", function (e) {
   }
 });
 
+function updateById(todosArray, id, newTask) {
+  const wantedTodo = todosArray.find((todo) => todo.id == id);
+  wantedTodo.task = newTask;
+}
+
+function inlineEdit(event) {
+  const todoElement = event.target.parentElement;
+  const todoId = todoElement.getAttribute("id");
+  const newTodoTaskName = event.target.textContent;
+  updateById(todos, todoId, newTodoTaskName);
+}
+
 // Add Event Listeners
 window.addEventListener("DOMContentLoaded", prepareTodoList);
 addTodoForm.addEventListener("submit", addTodo);
 searchInput.addEventListener("keyup", searchForTodo);
+todosList.addEventListener("focusout", inlineEdit);
