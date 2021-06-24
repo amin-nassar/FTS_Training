@@ -6,32 +6,7 @@ const modal = document.querySelector("#modal");
 const numberOfTodos = document.querySelector("#todo-number");
 const numberOfDone = document.querySelector("#done-number");
 
-let todos = [
-  {
-    id: 1,
-    task: "Go To The Market",
-    assignee: "Sameer Nassar",
-    isCompleted: true
-  },
-  {
-    id: 2,
-    task: "Go For A Walk",
-    assignee: "Amin Nassar",
-    isCompleted: false
-  },
-  {
-    id: 3,
-    task: "Clean The House",
-    assignee: "Ali Nassar",
-    isCompleted: true
-  },
-  {
-    id: 4,
-    task: "Study For 4 Hours",
-    assignee: "Waleed Nassar",
-    isCompleted: false
-  }
-];
+let todos = [];
 
 function prepareTodoList() {
   const todoElements = todos.map((todo) =>
@@ -91,7 +66,7 @@ function addTodo(e) {
 
   todos.push({ id, task, assignee, isCompleted: false });
   todosList.appendChild(todo);
-  saveNumbers();
+  saveTodos();
 }
 
 function checkForTermExist(todo, term) {
@@ -114,7 +89,7 @@ function toggleTodo(id) {
   });
   const checkedTodo = document.getElementById(id);
   checkedTodo.classList.toggle("completed");
-  saveNumbers();
+  saveTodos();
 }
 
 function hideConfirmationModal() {
@@ -154,11 +129,11 @@ async function deleteTodo(id) {
     const deletedTodo = document.getElementById(id);
     todosList.removeChild(deletedTodo);
     deleteById(todos, id);
-    saveNumbers();
+    saveTodos();
   }
 }
 
-todosList.addEventListener("click", function (e) {
+function handleCompleteAndDelete(e) {
   const elementClicked = e.target;
   if (elementClicked.tagName != "P") {
     const targetTodo = elementClicked.dataset.target;
@@ -171,7 +146,7 @@ todosList.addEventListener("click", function (e) {
         break;
     }
   }
-});
+}
 
 function updateById(todosArray, id, newTask) {
   const wantedTodo = todosArray.find((todo) => todo.id == id);
@@ -198,8 +173,25 @@ function saveNumbers() {
   numberOfTodos.textContent = todos.length - numberOfDoneItems;
 }
 
-// Add Event Listeners
-window.addEventListener("DOMContentLoaded", prepareTodoList);
-addTodoForm.addEventListener("submit", addTodo);
-searchInput.addEventListener("keyup", searchForTodo);
-todosList.addEventListener("focusout", inlineEdit);
+function saveTodos() {
+  const todosInJSON = JSON.stringify(todos);
+  localStorage.setItem("todos", todosInJSON);
+  saveNumbers();
+}
+
+function loadTodos() {
+  const jsonString = localStorage.getItem("todos");
+  todos = JSON.parse(jsonString);
+}
+
+function setUp() {
+  loadTodos();
+  prepareTodoList();
+  // Add Event Listeners
+  addTodoForm.addEventListener("submit", addTodo);
+  searchInput.addEventListener("keyup", searchForTodo);
+  todosList.addEventListener("click", handleCompleteAndDelete);
+  todosList.addEventListener("focusout", inlineEdit);
+}
+
+window.addEventListener("DOMContentLoaded", setUp);
