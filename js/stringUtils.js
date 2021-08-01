@@ -37,4 +37,19 @@ function pascalCase(str) {
     .join("");
   return outputStr === str.toLowerCase().trim() ? str.trim() : outputStr;
 }
-module.exports = { lowerCase, upperCase, pascalCase };
+
+function kebabCase(str) {
+  if (str === undefined) return "";
+  if (typeof str !== "string") throw new TypeError(`${str} Is Not A String`);
+  const outputStr = String(str)
+    .replace(/([^A-Za-z])+/g, " ")
+    .replace(/[A-Z]([a-z]+)/g, (match, i) => ` ${match}`)
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ")
+    .join("-")
+    .toLowerCase();
+  return outputStr;
+}
+
+module.exports = { lowerCase, upperCase, pascalCase, kebabCase };
