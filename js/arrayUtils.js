@@ -85,6 +85,12 @@ function reverse(array) {
   return outputArray;
 }
 
+function last(array) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  const index = array.length - 1;
+  return array[index];
+}
+
 module.exports = {
   map,
   filter,
@@ -93,5 +99,6 @@ module.exports = {
   find,
   findIndex,
   joinToArray,
-  reverse
+  reverse,
+  last
 };
