@@ -78,4 +78,20 @@ function joinToArray(array, value) {
   return outputArray;
 }
 
-module.exports = { map, filter, some, every, find, findIndex, joinToArray };
+function reverse(array) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  const outputArray = [];
+  for (let i = array.length - 1; i >= 0; i--) outputArray.push(array[i]);
+  return outputArray;
+}
+
+module.exports = {
+  map,
+  filter,
+  some,
+  every,
+  find,
+  findIndex,
+  joinToArray,
+  reverse
+};
