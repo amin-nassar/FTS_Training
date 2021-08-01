@@ -14,4 +14,12 @@ function values(obj) {
   return values;
 }
 
-module.exports = { keys, values };
+function entries(obj) {
+  if (obj === null || obj === undefined)
+    throw new TypeError(`Cannot convert ${obj} to object`);
+  const entries = [];
+  for (let key in obj) entries.push([key, obj[key]]);
+  return entries;
+}
+
+module.exports = { keys, values, entries };
