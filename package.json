@@ -1,0 +1,26 @@
+{
+  "name": "fts_training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amin-nassar/FTS_Training.git"
+  },
+  "keywords": [
+    "TDD",
+    "Test-Driven"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amin-nassar/FTS_Training/issues"
+  },
+  "homepage": "https://github.com/amin-nassar/FTS_Training#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
