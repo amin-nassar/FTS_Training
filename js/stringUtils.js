@@ -24,4 +24,17 @@ function upperCase(str) {
   return upperLetterArray.join("");
 }
 
-module.exports = { lowerCase, upperCase };
+function pascalCase(str) {
+  if (str === undefined) return "";
+  if (typeof str !== "string") throw new TypeError(`${str} Is Not A String`);
+  const capitalize = (word) => `${word[0].toUpperCase()}${word.substring(1)}`;
+  const outputStr = String(str)
+    .toLowerCase()
+    .replace(/([^A-Za-z])+/g, " ")
+    .trim()
+    .split(" ")
+    .map((word, index) => (index == 0 ? word : capitalize(word)))
+    .join("");
+  return outputStr === str.toLowerCase().trim() ? str.trim() : outputStr;
+}
+module.exports = { lowerCase, upperCase, pascalCase };
