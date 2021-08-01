@@ -22,4 +22,16 @@ function entries(obj) {
   return entries;
 }
 
-module.exports = { keys, values, entries };
+function pick(obj, keys) {
+  if (arguments.length <= 1 || obj === null) return {};
+  const outputObj = {};
+  if (!Array.isArray(keys)) outputObj[keys] = obj[keys];
+  else {
+    const stringKeys = keys.map(String);
+    for (let key in obj)
+      if (stringKeys.includes(key)) outputObj[key] = obj[key];
+  }
+  return outputObj;
+}
+
+module.exports = { keys, values, entries, pick };
