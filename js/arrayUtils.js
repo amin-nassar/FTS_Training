@@ -69,4 +69,13 @@ function findIndex(array, callback, thisArg) {
   return;
 }
 
-module.exports = { map, filter, some, every, find, findIndex };
+function joinToArray(array, value) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  const outputArray = [array[0]];
+  for (let i = 1; i < array.length; i++) {
+    outputArray.push(value, array[i]);
+  }
+  return outputArray;
+}
+
+module.exports = { map, filter, some, every, find, findIndex, joinToArray };
