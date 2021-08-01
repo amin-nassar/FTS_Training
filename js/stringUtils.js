@@ -1,5 +1,3 @@
-const { moduleExpression } = require("@babel/types");
-
 function lowerCase(str) {
   if (str === undefined) return "";
   if (typeof str !== "string") throw new TypeError(`${str} Is Not A String`);
@@ -13,4 +11,17 @@ function lowerCase(str) {
   return upperLetterArray.join("");
 }
 
-module.exports = { lowerCase };
+function upperCase(str) {
+  if (str === undefined) return "";
+  if (typeof str !== "string") throw new TypeError(`${str} Is Not A String`);
+  const diff = "a".charCodeAt() - "A".charCodeAt();
+  const letterArray = str.split("");
+  const upperLetterArray = letterArray.map(function (letter) {
+    if (/[a-z]/g.test(letter))
+      return String.fromCharCode(letter.charCodeAt() - diff);
+    else return letter;
+  });
+  return upperLetterArray.join("");
+}
+
+module.exports = { lowerCase, upperCase };
