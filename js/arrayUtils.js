@@ -36,4 +36,15 @@ function some(array, callback, thisArg) {
   return false;
 }
 
-module.exports = { map, filter, some };
+function every(array, callback, thisArg) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  if (!(callback instanceof Function))
+    throw new TypeError(`${callback} Is Not A Function`);
+  for (let index = 0; index < array.length; index++) {
+    const item = array[index];
+    if (!callback.call(thisArg, item, index, array)) return false;
+  }
+  return true;
+}
+
+module.exports = { map, filter, some, every };
