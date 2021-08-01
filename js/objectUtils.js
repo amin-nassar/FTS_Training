@@ -50,4 +50,20 @@ function omit(obj, keys) {
   return outputObj;
 }
 
-module.exports = { keys, values, entries, pick, omit };
+function getPropValue(object, props) {
+  if (object === null) return;
+  const firstProp = props[0];
+  if (props.length === 1) return object[firstProp];
+  const innerObject = object[firstProp];
+  if (innerObject === undefined) return;
+  return getPropValue(innerObject, props.slice(1));
+}
+
+function mayBe(obj, key, defaultValue) {
+  if (arguments.length <= 1) return;
+  const keys = String(key).split(".");
+  const finalValue = getPropValue(obj, keys);
+  return finalValue === undefined ? defaultValue : finalValue;
+}
+
+module.exports = { keys, values, entries, pick, omit, mayBe };
