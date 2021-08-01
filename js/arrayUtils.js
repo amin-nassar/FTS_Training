@@ -115,6 +115,31 @@ function groupBy(array, iteratee) {
   return obj;
 }
 
+function removeDuplicates(array, key) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  if (key === undefined) return [...new Set(array)];
+
+  const getPropertyValue = function (item, keys) {
+    if (keys.length === 1) return item[keys[0]];
+    myItem = item[keys[0]];
+    return getPropertyValue(myItem, keys.slice(1));
+  };
+  const createNewObject = function (prop, keys) {
+    if (keys.length === 1) return { [keys[0]]: prop };
+    return { [keys[0]]: createNewObject(prop, keys.slice(1)) };
+  };
+
+  const map = new Map();
+  const arr = [];
+  const keys = key.split(".");
+  for (item of array) {
+    const propertyValue = getPropertyValue(item, keys);
+    map.set(propertyValue, 0);
+  }
+  for (let property of map.keys()) arr.push(createNewObject(property, keys));
+  return arr;
+}
+
 module.exports = {
   map,
   filter,
@@ -126,5 +151,6 @@ module.exports = {
   reverse,
   last,
   flatten,
-  groupBy
+  groupBy,
+  removeDuplicates
 };
