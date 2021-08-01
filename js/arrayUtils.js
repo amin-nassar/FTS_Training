@@ -91,6 +91,16 @@ function last(array) {
   return array[index];
 }
 
+function flatten(array) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  const outputArray = [...array];
+  for (let i = 0; i < outputArray.length; i++) {
+    const element = outputArray[i];
+    if (Array.isArray(element)) outputArray.splice(i, 1, ...element);
+  }
+  return outputArray;
+}
+
 module.exports = {
   map,
   filter,
@@ -100,5 +110,6 @@ module.exports = {
   findIndex,
   joinToArray,
   reverse,
-  last
+  last,
+  flatten
 };
