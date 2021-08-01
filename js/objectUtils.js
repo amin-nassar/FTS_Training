@@ -34,4 +34,20 @@ function pick(obj, keys) {
   return outputObj;
 }
 
-module.exports = { keys, values, entries, pick };
+function omit(obj, keys) {
+  if (arguments.length === 0 || obj === null) return {};
+  if (arguments.length === 1) return obj;
+  const outputObj = {};
+  if (!Array.isArray(keys)) {
+    for (let key in obj) {
+      if (key !== String(keys)) outputObj[key] = obj[key];
+    }
+  } else {
+    const stringKeys = keys.map(String);
+    for (let key in obj)
+      if (!stringKeys.includes(key)) outputObj[key] = obj[key];
+  }
+  return outputObj;
+}
+
+module.exports = { keys, values, entries, pick, omit };
