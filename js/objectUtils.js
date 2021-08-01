@@ -6,4 +6,12 @@ function keys(obj) {
   return keys;
 }
 
-module.exports = { keys };
+function values(obj) {
+  if (obj === null || obj === undefined)
+    throw new TypeError(`Cannot convert ${obj} to object`);
+  const values = [];
+  for (let key in obj) values.push(obj[key]);
+  return values;
+}
+
+module.exports = { keys, values };
