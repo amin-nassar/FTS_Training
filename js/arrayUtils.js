@@ -101,6 +101,20 @@ function flatten(array) {
   return outputArray;
 }
 
+function groupBy(array, iteratee) {
+  if (!Array.isArray(array)) throw new TypeError(`${array} Is Not An Array`);
+  let obj = {};
+  if (iteratee) {
+    for (item of array) {
+      const propValue =
+        iteratee instanceof Function ? iteratee(item) : item[iteratee];
+      obj[propValue] = obj[propValue] ? [...obj[propValue], item] : [item];
+    }
+  } else for (item of array) obj[item] = item;
+
+  return obj;
+}
+
 module.exports = {
   map,
   filter,
@@ -111,5 +125,6 @@ module.exports = {
   joinToArray,
   reverse,
   last,
-  flatten
+  flatten,
+  groupBy
 };
