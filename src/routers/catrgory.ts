@@ -16,7 +16,7 @@ function getCategoryList() : Category[]{
 }
 
 
-function validateCategory(category: Category){
+function validateCategory(category: Category) : ValidationResult{
   const schema = Joi.object({
     id: Joi.number().integer().required(),
     name: Joi.string().required()

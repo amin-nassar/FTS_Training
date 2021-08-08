@@ -16,7 +16,7 @@ function getCheckoutList() : Checkout[]{
   else return [];
 }
 
-function validateCheckout(checkout: Checkout) {
+function validateCheckout(checkout: Checkout) : ValidationResult{
   const schema = Joi.object({
     id: Joi.number().required(),
     date: Joi.date().required(),

@@ -15,7 +15,7 @@ function saveProductList(products: Product[]) {
   utils.saveToJsonFile(PRODUCT_FILE_NAME, {products});
 }
 
-function validateProduct(product: Product) {
+function validateProduct(product: Product) : ValidationResult{
   const schema = Joi.object({
     id: Joi.number().integer().required(),
     name: Joi.string().required(),

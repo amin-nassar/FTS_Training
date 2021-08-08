@@ -29,3 +29,5 @@ interface Checkout {
   paymentAmount: number
   paymentMethod: string
 }
+
+type ValidationResult = { valid: false; error:string } | {valid: true, error?:never};
